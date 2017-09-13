@@ -1,0 +1,144 @@
+{% extends 'new_dashboard/base.html' %} {% load staticfiles %} {% block content%}
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row bg-white has-shadow">
+            <!-- Item -->
+            <div class="col-xl-3 col-sm-6">
+                <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="icon-user"></i></div>
+                    <div class="title"><span>大一<br>書院</span>
+                        <div class="progress">
+                            <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                        </div>
+                    </div>
+                    <div class="number"><strong>0</strong></div>
+                </div>
+            </div>
+            <!-- Item -->
+            <div class="col-xl-3 col-sm-6">
+                <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>大二<br>書院</span>
+                        <div class="progress">
+                            <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                        </div>
+                    </div>
+                    <div class="number"><strong>21</strong>
+                    </div>
+                </div>
+            </div>
+            <!-- Item -->
+            <div class="col-xl-3 col-sm-6">
+                <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <div class="title"><span>大三<br>書院</span>
+                        <div class="progress">
+                            <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                        </div>
+                    </div>
+                    <div class="number"><strong>20</strong></div>
+                </div>
+            </div>
+            <!-- Item -->
+            <div class="col-xl-3 col-sm-6">
+                <div class="item d-flex align-items-center">
+                    <div class="icon bg-orange"><i class="icon-check"></i></div>
+                    <div class="title"><span>大四<br>書院</span>
+                        <div class="progress">
+                            <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                        </div>
+                    </div>
+                    <div class="number"><strong>8</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="updates">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-close">
+                        <div class="dropdown">
+                            <button type="button" id="closeCard" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                            <div aria-labelledby="closeCard" class="dropdown-menu has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                        </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                        <h3 class="h4" v-cloak>申請書院人 ${ apply_status } (${ num_of_people } 人)</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Class</th>
+                                    <th>Introduction</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(member,id) in slice_table_data" :key="id">
+                                    <td>${ page_index * 8 + id + 1 }</td>
+                                    <td>${ member.Student_name }</td>
+                                    <td>${ member.Student_class }</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" @click="show_modal(page_index * 8 + id)">view</button>
+                                    </td>
+                                    <td>
+                                        ${ member.Student_permission }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item" @click="page_index -= (page_index > 0)? 1:0">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                </li>
+                                <li class="page-item" v-for="page in page_total" v-on:click="page_index = page-1">
+                                    <a class="page-link" href="#">${ page }</a></li>
+                                <li class="page-item" @click="page_index += (page_index < page_total - 1)? 1:0">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">審核</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <student_intro v-bind:student_data="member_data" v-if="status==0"></student_intro>
+                    <accept_letter v-bind:accept_data="member_data" v-else-if="status==1"></accept_letter>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" v-on:click="status=0">自我介紹</button>
+                    <button type="button" class="btn btn-primary" v-on:click="status=1" v-if="member_data.Student_permission == '未審核'">接受申請</button>
+                    <button type="button" class="btn btn-danger" v-on:click="reject_apply(member_data.Student_id)" v-if="member_data.Student_permission == '未審核'">拒絕申請</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content%}

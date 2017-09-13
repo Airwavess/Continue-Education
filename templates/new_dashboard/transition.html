@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s
+        }
+
+        .fade-enter {
+            opacity: 1
+        }
+
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="demo">
+        <button v-on:click="toggle()">Toggle</button>
+        <transition name="fade">
+            <p v-if="show">hello</p>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                show: true
+            },
+            methods: {
+                toggle: function () {
+                    this.show = false;
+                    var obj = this
+                    setTimeout(function () {
+                        obj.show = true;
+                    }, 500);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

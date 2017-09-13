@@ -1,0 +1,242 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <style>
+  .error_input {
+    border-color: red !important;
+  }
+  
+  .form-control {
+    border-color: #e2e2e2;
+  }
+  
+  .form-control:focus {
+    border-color: #e2e2e2;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>主顧榮譽書院</h1>
+      <form method="GET" action="/sendEmail/" v-on:submit="onSubmit" v-on:keydown.enter.prevent>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="student_name" class="form-control" v-model="student_name" v-bind:class="{'error_input':check_student_name}">
+        </div>
+        <div class="form-group">
+          <label>Class</label>
+          <div class="form-group">
+            <input type="text" name="student_class" class="form-control" v-model="student_class" v-bind:class="{'error_input':check_student_class}" maxlength="4">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Student ID</label>
+          <input type="number" name="student_id" class="form-control" v-model="student_id" v-bind:class="{'error_input':check_student_id}" maxlength="9">
+        </div>
+        <div class="form-group">
+          <label>Email address
+            <small id="emailHelp" class="form-text text-muted">We suggest you enter school's gmail.</small>
+          </label>
+          <input type="text" name="student_email" class="form-control" v-model="student_email" v-bind:class="{'error_input': check_student_email }">
+        </div>
+        <div class="form-group">
+          <label>Self Introduction</label>
+          <textarea class="form-control" name="self_introduction" rows="3" v-model="student_self_introduction" v-bind:class="{'error_input': check_student_self_introduction }"></textarea>
+        </div>
+        <button type="button" id="mymodal" class="btn btn-primary" data-toggle="modal" v-bind:data-target="data_target" v-bind:class="disabled">Send</button>
+        <div class="modal fade">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">再次確認</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>送出後就不可修改囉！</p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      a:1,
+      disabled: '',
+      data_target: '.modal',
+      student_name: '',
+      student_class: '',
+      student_id: '',
+      student_email: '',
+      student_self_introduction: '',
+      hasInput: {
+        name: false,
+        class: false,
+        id: false,
+        email: false,
+        self_introduction: false
+      },
+      permission: [
+        {
+          name: false,
+          class: false,
+          id: false,
+          email: false,
+          self_introduction: false
+        }
+      ]
+
+      // permission: []
+    },
+    mounted() {
+      // this.permission = Array.from({
+      //   length: 5
+      // }, () => false)
+    },
+    methods: {
+      onSubmit: function(event) {
+        // console.log(this.student_name + " " + this.student_class + " " + this.student_id + " " + this.student_email + " " + this.student_self_introduction)
+        var boo = true
+        for (var key in this.permission) {
+          console.log(this.permission[key])
+          if (!this.permission[key]) {
+            event.preventDefault()
+            break
+          }
+        }
+      }
+    },
+    watch: {
+      permission: {
+        handler: function(after, before) {
+          console.log(after+" "+before)
+          for (var key in this.permission) {
+            console.log(this.permission[key])
+            if (!this.permission[key]) {
+              this.disabled = "disabled"
+              this.data_target = ""
+            } else {
+              this.disabled = ""
+              this.data_target = ".modal"
+            }
+          }
+        },
+        deep: true,
+      },
+      a: {
+        handler: function(after, before) {
+          console.log(after+" "+before)
+        },
+        deep: true
+      }
+    },
+    computed: {
+      check_student_name: function() {
+        if (this.student_name.length != 0)
+          this.hasInput.name = true
+        if (this.hasInput.name == true) {
+          if (this.student_name.length > 0) {
+            this.permission.name = true
+          } else {
+            this.permission.name = false
+          }
+          return !(this.permission.name)
+        } else {
+          return false
+        }
+      },
+      check_student_class: function() {
+        if (this.student_class.length != 0)
+          this.hasInput.class = true
+
+        if (this.hasInput.class == true) {
+          if (this.student_class.length > 0) {
+            this.permission.class = true
+          } else {
+            this.permission.class = false
+          }
+          return !(this.permission.class)
+        } else {
+          return false
+        }
+      },
+      /**
+       * Check whether the length of student's id is 9 or 0. If the length of 
+       * student's id is 9 or 0, the method return false, otherwise returning true.
+       */
+      check_student_id: function() {
+        if (this.student_id > 0)
+          this.hasInput.id = true
+
+        if (this.hasInput.id == true) {
+          if (this.student_id.length == 9) {
+            this.permission.id = true
+          } else {
+            this.permission.id = false
+          }
+          return !(this.permission.id)
+        } else {
+          return false
+        }
+
+      },
+      /**
+       * Check the student's email format, the method return true if the email format is 
+       * incorrect, otherwise returning false.
+       * @return true or false
+       */
+      check_student_email: function() {
+        /* the regular expression of email */
+        var re = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+        if (this.student_email.length > 0)
+          this.hasInput.email = true
+
+        if (this.hasInput.email == true) {
+          if (re.test(this.student_email)) {
+            this.permission.email = true
+          } else {
+            this.permission.email = false
+          }
+          return !(this.permission.email)
+        } else {
+          return false
+        }
+      },
+      check_student_self_introduction: function() {
+        if (this.student_self_introduction.length != 0)
+          this.hasInput.self_introduction = true
+
+        if (this.hasInput.self_introduction) {
+          if (this.student_self_introduction.length > 0) {
+            this.permission.self_introduction = true
+          } else {
+            this.permission.self_introduction = false
+          }
+          return !(this.permission.self_introduction)
+        } else {
+          return false
+        }
+      }
+    }
+  })
+  </script>
+</body>
+
+</html>

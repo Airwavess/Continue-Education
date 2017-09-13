@@ -1,0 +1,17 @@
+.btn {
+    border-radius: 0px !important;
+}
+
+#modalLabel {
+    font-size: 20px;
+}
+
+.modal-body h5, .modal-body pre{
+    font-size: 20px;
+}
+
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

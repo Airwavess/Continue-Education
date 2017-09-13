@@ -1,0 +1,167 @@
+/* * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+} */
+
+body {
+  font-family: 'Lato', 'sans-serif';
+  font-weight: 400;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.navbar-header {
+  width: 100%;
+  height: 80px;
+}
+
+.navbar a {
+  font-weight: 700;
+  color: #506A85 !important;
+}
+
+.navbar {
+  padding: 1rem 2rem !important;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  margin: 0px 10px;
+}
+
+.nav-img {
+  position: absolute;
+  width: 50px;
+  left: 5px;
+  top: 10px;
+}
+
+.navbar-brand {
+  width: 200px;
+}
+
+.navbar-brand img {
+  padding-right: 20px;
+}
+
+#header-wrapper {
+  height: 600px;
+  position: absolute;
+  width: 100%;
+}
+
+#header-content {
+  height: 600px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#header-content h1 {
+  font-size: 60px;
+  font-weight: 900;
+  color: white;
+}
+
+#header-content h4 {
+  font-weight: 400;
+  color: #AFFEFF;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img {
+  width: 100%;
+  position: relative;
+  background-position: center -600px !important;
+}
+
+.carousel-indicators li {
+  max-width: 15px !important;
+  height: 15px !important;
+  border-radius: 50%;
+  margin: 0px 10px;
+}
+
+.carousel-content {
+  height: 100%;
+  position: absolute;
+}
+
+.carousel-control {
+  z-index: 1000;
+  width: 10% !important;
+}
+
+#new-messages {
+  padding-top: 40px;
+  color: #73879C;
+}
+
+#new-title {
+  text-align: center;
+  color: #506A85;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  padding-bottom: 40px;
+}
+
+#new-messages th,
+#new-messages td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+#new-messages th:first-child,
+#new-messages td:first-child {
+  width: 140px;
+}
+
+.table-striped>tbody>tr:nth-child(2n+1)>td,
+.table-striped>tbody>tr:nth-child(2n+1)>th {
+  background-color: #F5F7FA;
+}
+
+a {
+  color: #73879C !important;
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: #1ABB9C !important;
+}
+
+#nav-page {
+  padding: 20px;
+}
+
+#footer {
+  height: 80px;
+  background-color: #283645;
+  color: #707E8C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#footer p {
+  height: 100%;
+  margin: 0px;
+}
