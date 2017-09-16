@@ -19,6 +19,11 @@ from frontend import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^/', include('frontend.urls')),
     url(r'^$', views.index),
+    url(r'^conference/$', views.conference),
+    url(r'^data_analysis/$', views.data_analysis),
+    url(r'^news/$', views.news),
+    url(r'^about/$', views.about),
+    url(r'^research/$', views.research),
+    url(r'^activity/$', views.activity),
 ]

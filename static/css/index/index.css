@@ -137,7 +137,7 @@ body {
 }
 
 a {
-  color: #73879C !important;
+  /* color: #73879C !important; */
   text-decoration: none !important;
   transition: 0.3s;
 }

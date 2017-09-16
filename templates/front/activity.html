@@ -1,0 +1,58 @@
+{% extends 'front/base.html' %} {% load staticfiles %} {% block header %}
+<link rel="stylesheet" href="{% static 'css/index/activity.css' %}">
+<div class="jumbotron">
+    <div class="container jumbotron-content">
+        <h1>活動集錦</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron
+            and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    </div>
+</div>
+{% endblock %} {% block content %}
+<div class="album text-muted">
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/1.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/2.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/3.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/1-1.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/1.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/1.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+            <div class="card">
+                <div class="img" style="background-image: url('{% static "img/1.jpg" %}')"></div>
+                <p class="card-text">2017-02-06 活動</p>
+            </div>
+        </div>
+    </div>
+    <div id="page">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+{% endblock %}

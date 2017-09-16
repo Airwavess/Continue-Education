@@ -1,0 +1,19 @@
+.jumbotron {
+    background-image: url('/static/img/一日靜宜.jpg');
+    margin-bottom: 0px !important;
+    margin-top: 70px;
+    background-repeat: no-repeat;
+    background-position: center -600px; 
+    background-size: 100%;
+    width: 100%;
+}
+
+.jumbotron-content {
+    text-align: center;
+    color: white;
+}
+
+.jumbotron-content h1 {
+    font-size: 60px;
+    font-weight: 900;
+}

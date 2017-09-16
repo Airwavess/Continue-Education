@@ -1,0 +1,59 @@
+.jumbotron {
+    background-image: url('/static/img/一日靜宜.jpg');
+    margin-bottom: 0px !important;
+    margin-top: 70px;
+    background-repeat: no-repeat;
+    background-position: center -600px;
+    background-size: 100%;
+    width: 100%;
+}
+
+.jumbotron-content {
+    text-align: center;
+    color: white;
+}
+
+.jumbotron-content h1 {
+    font-size: 60px;
+    font-weight: 900;
+}
+
+#slide {
+    margin-top: 40px;
+}
+
+#page {
+    margin-top: 40px;
+}
+
+.album {
+    min-height: 50rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.card {
+    width: 33.333%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border: 0;
+}
+
+.img {
+    margin-bottom: .75rem;
+    width: 100%;
+    height: 200px;
+    background-position: center center;
+    background-size: 100%;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.img:hover {
+    background-size: 110% auto;
+}
+
+.card-text {
+    font-weight: 600;
+}
